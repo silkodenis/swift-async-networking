@@ -1,0 +1,24 @@
+name: Tests
+
+on:
+  push:
+    branches: [ main ]
+    paths-ignore:
+      - 'README.md'
+  pull_request:
+    branches: [ main ]
+    paths-ignore:
+      - 'README.md'
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Build
+      run: swift build -v
+
+    - name: Run tests
+      run: swift test -v
